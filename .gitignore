@@ -1,0 +1,27 @@
+# OS
+.DS_Store
+
+# IDE
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+publish/
+app.zip
+*.zip
+
+# Azure CLI
+.azconfig/
+
+# Node
+client/node_modules/
+client/dist/
+
+# Logs
+*.log
+
