@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import type { WeatherForecastRequest } from "../types";
@@ -47,6 +48,19 @@ export function ForecastForm({
     resolver: zodResolver(forecastSchema),
     defaultValues,
   });
+
+  useEffect(() => {
+    if (defaultValues) {
+      reset(defaultValues);
+    } else {
+      reset({
+        date: "",
+        temperatureC: 0,
+        summary: "",
+        city: "",
+      });
+    }
+  }, [defaultValues, reset]);
 
   const handleFormSubmit = async (values: ForecastFormValues) => {
     await onSubmit({

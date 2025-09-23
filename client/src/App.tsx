@@ -73,6 +73,9 @@ function App() {
 
     try {
       await deleteForecast(forecast.id);
+      if (selectedForecast?.id === forecast.id) {
+        setSelectedForecast(null);
+      }
       await loadForecasts();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to delete forecast");
