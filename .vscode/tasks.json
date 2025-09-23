@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "kill server",
+      "type": "shell",
+      "command": "pkill -f \"MyFullStackApp/Server/bin/Debug/net8.0/Server.dll\" || true"
+    },
+    {
+      "label": "build server",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/Server/Server.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "prep server",
+      "dependsOn": [
+        "kill server",
+        "build server"
+      ]
+    },
+    {
+      "label": "npm: dev",
+      "type": "npm",
+      "path": "client",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "base": "$tsc",
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^\\s*vite v",
+            "endsPattern": "ready in \\d+\\.\\d+ ms"
+          }
+        }
+      ]
+    }
+  ]
+}
