@@ -13,15 +13,32 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "https://localhost:5001;http://localhost:5000"
       }
+    },
+    {
+      "name": "Vite Dev Server",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/client",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "BROWSER": "none"
+      }
     }
   ],
   "compounds": [
     {
       "name": "Run Server + Frontend",
       "configurations": [
-        ".NET Server"
+        ".NET Server",
+        "Vite Dev Server"
       ],
-      "preLaunchTask": "npm: dev"
+      "stopAll": true
     }
   ]
 }

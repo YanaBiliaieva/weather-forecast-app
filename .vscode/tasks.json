@@ -26,23 +26,6 @@
         "kill server",
         "build server"
       ]
-    },
-    {
-      "label": "npm: dev",
-      "type": "npm",
-      "path": "client",
-      "script": "dev",
-      "isBackground": true,
-      "problemMatcher": [
-        {
-          "base": "$tsc",
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": "^\\s*vite v",
-            "endsPattern": "ready in \\d+\\.\\d+ ms"
-          }
-        }
-      ]
     }
   ]
 }
