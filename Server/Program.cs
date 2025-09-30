@@ -50,7 +50,15 @@ builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
     }
     else
     {
-        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+        var sqlConnectionString = configuration.GetConnectionString("DefaultConnection");
+
+        options.UseSqlServer(sqlConnectionString, sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(10),
+                errorNumbersToAdd: null);
+        });
     }
 });
 
